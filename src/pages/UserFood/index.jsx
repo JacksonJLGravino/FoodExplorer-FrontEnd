@@ -26,7 +26,7 @@ export function UserFood() {
       </BgHeaderFooter>
 
       <Main>
-        <GoBack>
+        <GoBack href="/">
           <div></div>
           <p>Voltar</p>
         </GoBack>

@@ -27,7 +27,7 @@ export function SignIn() {
           type="passwordIn"
         />
         <FormButton btnText="Entrar" />
-        <BordelessButton btnText="ja tenho conta" />
+        <BordelessButton href="/register" btnText="Criar uma conta" />
       </Form>
     </Container>
   );

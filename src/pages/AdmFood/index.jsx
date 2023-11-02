@@ -41,7 +41,7 @@ export function AdmFood() {
           </TagContainer>
 
           <FooterBtnControler>
-            <ConfirmBtn>
+            <ConfirmBtn href="/edit">
               <p>Editar prato</p>
             </ConfirmBtn>
           </FooterBtnControler>

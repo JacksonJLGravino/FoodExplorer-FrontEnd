@@ -1,9 +1,9 @@
 import { Button, Container } from "./styles";
 
-export function BordelessButton({ btnText }) {
+export function BordelessButton({ btnText, ...rest }) {
   return (
     <Container>
-      <Button>{btnText}</Button>
+      <Button {...rest}>{btnText}</Button>
     </Container>
   );
 }

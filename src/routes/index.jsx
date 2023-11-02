@@ -7,7 +7,7 @@ import { AdmRoutes } from "./adm.routes";
 export function Routes() {
   return (
     <BrowserRouter>
-      <AuthRoutes />
+      <AdmRoutes />
     </BrowserRouter>
   );
 }

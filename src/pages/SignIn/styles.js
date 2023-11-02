@@ -34,6 +34,8 @@ export const Form = styled.form`
   @media (min-width: 768px) {
     width: 476px;
     padding: 64px;
+    background: ${({ theme }) => theme.COLORS.DARK_700};
+    border-radius: 16px;
   }
 `;
 

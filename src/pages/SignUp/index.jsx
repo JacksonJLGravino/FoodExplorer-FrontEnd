@@ -32,7 +32,7 @@ export function SignUp() {
           type="password"
         />
         <FormButton btnText="Entrar" />
-        <BordelessButton btnText="ja tenho conta" />
+        <BordelessButton href="/" btnText="ja tenho conta" />
       </Form>
     </Container>
   );

@@ -1,6 +1,16 @@
 import styled from "styled-components";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  @media (min-width: 964px) {
+    flex-direction: row;
+    gap: 16px;
+  }
+`;
 
 export const InfoSun = styled.div`
   display: flex;
@@ -21,7 +31,7 @@ export const Text = styled.p`
   font-size: 16px;
 `;
 
-export const BtnInclude = styled.button`
+export const BtnInclude = styled.a`
   padding: 4px 59px;
   background: ${({ theme }) => theme.COLORS.TOMATO_100};
   margin-top: 16px;
@@ -35,5 +45,10 @@ export const BtnInclude = styled.button`
 
   &:hover {
     background: ${({ theme }) => theme.COLORS.TOMATO_200};
+  }
+
+  @media (min-width: 964px) {
+    margin-top: 0;
+    padding: 12px 24px;
   }
 `;

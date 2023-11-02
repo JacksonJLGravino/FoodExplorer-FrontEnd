@@ -26,7 +26,7 @@ export function AdmNewFood() {
       </BgHeaderFooter>
 
       <Main>
-        <GoBack>
+        <GoBack href="/">
           <div></div>
           <p>Voltar</p>
         </GoBack>

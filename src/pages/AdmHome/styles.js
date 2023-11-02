@@ -18,19 +18,16 @@ export const BannerContainer = styled.div`
 export const FoodsContainer = styled.div`
   padding-inline: 24px;
   margin-bottom: 24px;
+  max-width: 1168px;
+  margin-inline: auto;
 
-  h3 {
+  > h3 {
     font-family: Poppins;
     font-size: 18px;
     font-style: normal;
     font-weight: 500;
     line-height: 140%;
     color: ${({ theme }) => theme.COLORS.LIGHT_300};
-  }
-
-  > div {
-    display: flex;
-    gap: 16px;
-    margin-top: 24px;
+    margin-bottom: 24px;
   }
 `;

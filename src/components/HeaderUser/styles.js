@@ -1,25 +1,52 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  display: flex;
   text-align: center;
-  align-items: center;
-  justify-content: space-between;
   padding: 56px 28px 24px;
   max-width: 1178px;
   margin-inline: auto;
 
   @media (min-width: 767px) {
     padding-block: 24px;
+  }
+`;
+
+export const Close = styled.div`
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: space-between;
+
+  @media (min-width: 767px) {
     gap: 32px;
   }
 
   form {
     display: none;
+
     @media (min-width: 767px) {
       display: block;
       width: 100%;
     }
+  }
+`;
+
+export const Open = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 16px;
+
+  > p {
+    color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    font-family: Roboto;
+    font-size: 22px;
+  }
+
+  > button {
+    background: none;
+    border: none;
+    outline: none;
   }
 `;
 

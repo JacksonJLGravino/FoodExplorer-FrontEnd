@@ -28,13 +28,13 @@ export function AdmEditFood() {
       </BgHeaderFooter>
 
       <Main>
-        <GoBack>
+        <GoBack href="/">
           <div></div>
           <p>Voltar</p>
         </GoBack>
 
         <FormFood>
-          <h3>Novo Prato</h3>
+          <h3>Editar Prato</h3>
           <Section1>
             <ImportFileDiv>
               <label htmlFor="ImgEdit">

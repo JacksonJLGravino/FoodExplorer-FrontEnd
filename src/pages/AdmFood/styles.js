@@ -131,7 +131,7 @@ export const FooterBtnControler = styled.div`
   }
 `;
 
-export const ConfirmBtn = styled.button`
+export const ConfirmBtn = styled.a`
   height: 38px;
   width: 188px;
   display: flex;
