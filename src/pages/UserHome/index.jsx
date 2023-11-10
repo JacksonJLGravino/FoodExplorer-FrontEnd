@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import {
   BgHeaderFooter,
   Container,
@@ -8,20 +8,17 @@ import {
 import { Footer } from "../../components/Footer";
 import { HeaderUser } from "../../components/HeaderUser";
 import { Banner } from "../../components/Banner";
-import { FoodCard } from "../../components/FoodCard/Index";
-import Dish from "../../assets/Dish.png";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
+import { useAuth } from "../../hooks/auth";
 
-import { Keyboard, Navigation } from "swiper/modules";
-import { Slider } from "../../components/Slider";
 import { Modal } from "../../components/Modal";
 import { TextModal } from "../../components/TextModal/input";
+import { ScrollSlider } from "../../components/ScrollSlider";
 
 export function UserHome() {
   const [isOpen, setIsOpen] = useState(false);
+  const [search, setSearch] = useState("");
+
+  const { signOut } = useAuth();
 
   function openCloseMenu() {
     if (isOpen) {
@@ -31,14 +28,25 @@ export function UserHome() {
     }
   }
 
+  function handleDetails(id) {
+    console.log(id);
+  }
+
   return (
     <Container>
       <BgHeaderFooter>
-        <HeaderUser onClick={openCloseMenu} IsOpen={isOpen} />
+        <HeaderUser
+          onClick={openCloseMenu}
+          IsOpen={isOpen}
+          onChange={(e) => setSearch(e.target.value)}
+        />
       </BgHeaderFooter>
 
-      <Modal IsOpen={isOpen}>
-        <TextModal text="Sair" />
+      <Modal
+        IsOpen={isOpen}
+        onChange={(e) => setSearch(e.target.value)}
+        value={search}>
+        <TextModal text="Sair" onClick={signOut} />
       </Modal>
 
       <BannerContainer>
@@ -48,45 +56,21 @@ export function UserHome() {
       <FoodsContainer>
         <h3>Refeições</h3>
         <div>
-          <Slider>
-            <SwiperSlide>
-              <FoodCard
-                image={Dish}
-                title="comida"
-                price="R$ 5,25"
-                href="/food"
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <FoodCard image={Dish} title="comida" price="R$ 5,25" />
-            </SwiperSlide>
-
-            <SwiperSlide>
-              <FoodCard image={Dish} title="comida" price="R$ 5,25" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <FoodCard image={Dish} title="comida" price="R$ 5,25" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <FoodCard image={Dish} title="comida" price="R$ 5,25" />
-            </SwiperSlide>
-          </Slider>
+          <ScrollSlider search={search} type="Refeição" />
         </div>
       </FoodsContainer>
 
       <FoodsContainer>
-        <h3>Refeições</h3>
+        <h3>Sobremesas</h3>
         <div>
-          <FoodCard image={Dish} title="comida" price="R$ 5,25" href="/food" />
-          <FoodCard image={Dish} title="comida" price="R$ 5,25" />
+          <ScrollSlider search={search} type="Sobremesa" />
         </div>
       </FoodsContainer>
 
       <FoodsContainer>
-        <h3>Sucos</h3>
+        <h3>Bebidas</h3>
         <div>
-          <FoodCard image={Dish} title="comida" price="R$ 5,25" />
-          <FoodCard image={Dish} title="comida" price="R$ 5,25" />
+          <ScrollSlider search={search} type="Bebida" />
         </div>
       </FoodsContainer>
 

@@ -26,8 +26,6 @@ export function Slider({ children }) {
     <Swiper
       spaceBetween={0}
       slidesPerView={size}
-      onSlideChange={() => console.log("slide change")}
-      onSwiper={(swiper) => console.log(swiper)}
       keyboard={{
         enabled: true,
       }}

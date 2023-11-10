@@ -10,19 +10,23 @@ export function FoodCard({
   isAdmin = false,
   href,
   hrefIcon,
+  description,
+  onClick,
 }) {
   return (
     <Container>
       <Image src={image} />
       <ButtonIcon href={hrefIcon}>
-        {isAdmin ? <img src={Pencil} alt="" /> : <img src={Heart} alt="" />}
+        {isAdmin ? (
+          <img src={Pencil} alt="" onClick={onClick} />
+        ) : (
+          <img src={Heart} alt="" />
+        )}
       </ButtonIcon>
       <Title>{title}</Title>
-      <p className="text">
-        Presunto de parma e rúcula em um pão com fermentação natural.
-      </p>
+      <p className="text">{description}</p>
       <Price>{price}</Price>
-      {isAdmin ? <div></div> : <AddButton href={href} />}
+      {isAdmin ? <div></div> : <AddButton onClick={onClick} />}
     </Container>
   );
 }

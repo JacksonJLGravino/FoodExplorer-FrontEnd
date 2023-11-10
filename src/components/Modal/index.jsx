@@ -2,12 +2,16 @@ import { useEffect, useState } from "react";
 import { Container, ModalMenu } from "./styles";
 import { SearchBar } from "../SearchBar";
 
-export function Modal({ IsOpen, children }) {
+export function Modal({ IsOpen, children, onChange, value }) {
   return (
     <Container>
       {IsOpen ? (
         <ModalMenu>
-          <SearchBar />
+          <SearchBar
+            onChange={onChange}
+            placeholder="Busque por pratos"
+            value={value}
+          />
           <div>{children}</div>
         </ModalMenu>
       ) : (

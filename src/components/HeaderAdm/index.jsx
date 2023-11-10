@@ -1,12 +1,14 @@
 import { BtnMenu, Close, Container, Logo, Open, Out, Receipt } from "./styles";
 import LogoSvg from "../../assets/logo.svg";
-import ReceiptSvg from "../../assets/receipt.svg";
 import Menu from "../../assets/menu.svg";
 import SignOut from "../../assets/signOut.svg";
 import { SearchBar } from "../SearchBar";
 import CloseSvg from "../../assets/close.svg";
+import { useAuth } from "../../hooks/auth";
 
-export function HeaderAdm({ onClick, IsOpen }) {
+export function HeaderAdm({ onClick, IsOpen, onChange }) {
+  const { signOut } = useAuth();
+
   return (
     <Container>
       {IsOpen ? (
@@ -28,14 +30,14 @@ export function HeaderAdm({ onClick, IsOpen }) {
           </Logo>
 
           <form action="">
-            <SearchBar placeholder="Busque por pratos ou ingredientes" />
+            <SearchBar placeholder="Busque por pratos" onChange={onChange} />
           </form>
 
           <Receipt href="/new">
             <p>Novo prato</p>
           </Receipt>
 
-          <Out href="">
+          <Out href="" onClick={signOut}>
             <img src={SignOut} alt="" />
           </Out>
         </Close>

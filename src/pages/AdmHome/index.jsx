@@ -6,22 +6,18 @@ import {
   FoodsContainer,
 } from "./styles";
 import { Footer } from "../../components/Footer";
-import { HeaderUser } from "../../components/HeaderUser";
 import { Banner } from "../../components/Banner";
-import { FoodCard } from "../../components/FoodCard/Index";
-import Dish from "../../assets/Dish.png";
 import { HeaderAdm } from "../../components/HeaderAdm";
 import { Modal } from "../../components/Modal";
 import { TextModal } from "../../components/TextModal/input";
-
-import { Slider } from "../../components/Slider";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
+import { useAuth } from "../../hooks/auth";
+import { ScrollSlider } from "../../components/ScrollSlider";
 
 export function AdmHome() {
   const [isOpen, setIsOpen] = useState();
+  const [search, setSearch] = useState("");
+
+  const { signOut } = useAuth();
 
   function openCloseMenu() {
     if (isOpen) {
@@ -34,12 +30,19 @@ export function AdmHome() {
   return (
     <Container>
       <BgHeaderFooter>
-        <HeaderAdm onClick={openCloseMenu} IsOpen={isOpen} />
+        <HeaderAdm
+          onClick={openCloseMenu}
+          IsOpen={isOpen}
+          onChange={(e) => setSearch(e.target.value)}
+        />
       </BgHeaderFooter>
 
-      <Modal IsOpen={isOpen}>
+      <Modal
+        IsOpen={isOpen}
+        onChange={(e) => setSearch(e.target.value)}
+        value={search}>
         <TextModal text="Novo Prato" href="/new" />
-        <TextModal text="Sair" />
+        <TextModal text="Sair" onClick={signOut} />
       </Modal>
 
       <BannerContainer>
@@ -49,77 +52,21 @@ export function AdmHome() {
       <FoodsContainer>
         <h3>Refeições</h3>
         <div>
-          <Slider>
-            <SwiperSlide>
-              <FoodCard
-                image={Dish}
-                title="comida"
-                price="R$ 5,25"
-                isAdmin={true}
-                hrefIcon="/food"
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <FoodCard
-                image={Dish}
-                title="comida"
-                price="R$ 5,25"
-                isAdmin={true}
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <FoodCard
-                image={Dish}
-                title="comida"
-                price="R$ 5,25"
-                isAdmin={true}
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <FoodCard
-                image={Dish}
-                title="comida"
-                price="R$ 5,25"
-                isAdmin={true}
-              />
-            </SwiperSlide>
-          </Slider>
+          <ScrollSlider search={search} type="Refeição" isAdmin={true} />
         </div>
       </FoodsContainer>
 
       <FoodsContainer>
-        <h3>Refeições</h3>
+        <h3>Sobremesas</h3>
         <div>
-          <FoodCard
-            image={Dish}
-            title="comida"
-            price="R$ 5,25"
-            isAdmin={true}
-          />
-          <FoodCard
-            image={Dish}
-            title="comida"
-            price="R$ 5,25"
-            isAdmin={true}
-          />
+          <ScrollSlider search={search} type="Sobremesa" isAdmin={true} />
         </div>
       </FoodsContainer>
 
       <FoodsContainer>
-        <h3>Sucos</h3>
+        <h3>Bebidas</h3>
         <div>
-          <FoodCard
-            image={Dish}
-            title="comida"
-            price="R$ 5,25"
-            isAdmin={true}
-          />
-          <FoodCard
-            image={Dish}
-            title="comida"
-            price="R$ 5,25"
-            isAdmin={true}
-          />
+          <ScrollSlider search={search} type="Bebida" isAdmin={true} />
         </div>
       </FoodsContainer>
 

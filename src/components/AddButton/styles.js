@@ -31,7 +31,7 @@ export const Text = styled.p`
   font-size: 16px;
 `;
 
-export const BtnInclude = styled.a`
+export const BtnInclude = styled.button`
   padding: 4px 59px;
   background: ${({ theme }) => theme.COLORS.TOMATO_100};
   margin-top: 16px;

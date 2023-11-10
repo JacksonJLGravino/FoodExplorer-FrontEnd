@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   BgHeaderFooter,
   Container,
@@ -17,50 +18,84 @@ import Dish from "../../assets/Dish.png";
 import { Tag } from "../../components/Tag/Index";
 import Minus from "../../assets/minus.svg";
 import Plus from "../../assets/plus.svg";
+import { Modal } from "../../components/Modal";
+import { TextModal } from "../../components/TextModal/input";
+import { useAuth } from "../../hooks/auth";
+import { useParams } from "react-router-dom";
+import { api } from "../../services/api";
 
 export function UserFood() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [data, setData] = useState(null);
+
+  const { signOut } = useAuth();
+  const params = useParams();
+
+  function openCloseMenu() {
+    if (isOpen) {
+      setIsOpen(false);
+    } else {
+      setIsOpen(true);
+    }
+  }
+
+  useEffect(() => {
+    async function fetchFood() {
+      const response = await api.get(`/foods/${params.id}`);
+      setData(response.data);
+    }
+    fetchFood();
+  }, []);
+
   return (
     <Container>
       <BgHeaderFooter>
-        <HeaderUser />
+        <HeaderUser onClick={openCloseMenu} IsOpen={isOpen} />
       </BgHeaderFooter>
 
-      <Main>
-        <GoBack href="/">
-          <div></div>
-          <p>Voltar</p>
-        </GoBack>
+      <Modal IsOpen={isOpen}>
+        <TextModal text="Sair" onClick={signOut} />
+      </Modal>
 
-        <FoodImg src={Dish} alt="" />
-        <Food>
-          <h4>Salada Ravanello</h4>
-          <p>
-            Rabanetes, folhas verdes e molho agridoce salpicados com gergelim.
-          </p>
+      {data && (
+        <Main>
+          <GoBack href="/">
+            <div></div>
+            <p>Voltar</p>
+          </GoBack>
 
-          <TagContainer>
-            <Tag text="comida" />
-            <Tag text="coutra coisa" />
-          </TagContainer>
+          <FoodImg src={Dish} alt="" />
+          <Food>
+            <h4>{data.title}</h4>
+            <p>{data.description}</p>
 
-          <FooterBtnsControler>
-            <AddRemoveBtns>
-              <AddBtn>
-                <img src={Minus} alt="" />
-              </AddBtn>
-              <p>01</p>
-              <AddBtn>
-                <img src={Plus} alt="" />
-              </AddBtn>
-            </AddRemoveBtns>
+            {data.ingredients && (
+              <TagContainer>
+                {data.ingredients.map((ingredient) => (
+                  <Tag key={String(ingredient.id)} text={ingredient.name} />
+                ))}
+              </TagContainer>
+            )}
 
-            <ConfirmBtn>
-              <div></div>
-              <p>pedir - R$ 25,00</p>
-            </ConfirmBtn>
-          </FooterBtnsControler>
-        </Food>
-      </Main>
+            <FooterBtnsControler>
+              <AddRemoveBtns>
+                <AddBtn>
+                  <img src={Minus} alt="" />
+                </AddBtn>
+                <p>01</p>
+                <AddBtn>
+                  <img src={Plus} alt="" />
+                </AddBtn>
+              </AddRemoveBtns>
+
+              <ConfirmBtn>
+                <div></div>
+                <p>pedir - R$ {data.price}</p>
+              </ConfirmBtn>
+            </FooterBtnsControler>
+          </Food>
+        </Main>
+      )}
 
       <BgHeaderFooter>
         <Footer />

@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   BgHeaderFooter,
   Container,
@@ -10,43 +11,83 @@ import {
   ConfirmBtn,
 } from "./styles";
 import { Footer } from "../../components/Footer";
-import { HeaderUser } from "../../components/HeaderUser";
 import Dish from "../../assets/Dish.png";
 import { Tag } from "../../components/Tag/Index";
 import { HeaderAdm } from "../../components/HeaderAdm";
+import { Modal } from "../../components/Modal";
+import { TextModal } from "../../components/TextModal/input";
+import { useAuth } from "../../hooks/auth";
+import { useParams } from "react-router-dom";
+import { api } from "../../services/api";
+import { useNavigate } from "react-router-dom";
 
 export function AdmFood() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [data, setData] = useState(null);
+
+  const { signOut } = useAuth();
+  const params = useParams();
+  const navigate = useNavigate();
+
+  function openCloseMenu() {
+    if (isOpen) {
+      setIsOpen(false);
+    } else {
+      setIsOpen(true);
+    }
+  }
+
+  function handleEditFood(id) {
+    navigate(`/edit/${id}`);
+  }
+
+  useEffect(() => {
+    async function fetchFood() {
+      const response = await api.get(`/foods/${params.id}`);
+      setData(response.data);
+    }
+    fetchFood();
+  }, []);
+
   return (
     <Container>
       <BgHeaderFooter>
-        <HeaderAdm />
+        <HeaderAdm onClick={openCloseMenu} IsOpen={isOpen} />
       </BgHeaderFooter>
 
-      <Main>
-        <GoBack>
-          <div></div>
-          <p>Voltar</p>
-        </GoBack>
+      <Modal IsOpen={isOpen}>
+        <TextModal text="Novo Prato" href="/new" />
+        <TextModal text="Sair" onClick={signOut} />
+      </Modal>
 
-        <FoodImg src={Dish} alt="" />
-        <Food>
-          <h4>Salada Ravanello</h4>
-          <p>
-            Rabanetes, folhas verdes e molho agridoce salpicados com gergelim.
-          </p>
+      {data && (
+        <Main>
+          <GoBack href="/">
+            <div></div>
+            <p>Voltar</p>
+          </GoBack>
 
-          <TagContainer>
-            <Tag text="comida" />
-            <Tag text="coutra coisa" />
-          </TagContainer>
+          <FoodImg src={Dish} alt="" />
+          <Food>
+            <h4>{data.title}</h4>
+            <p>{data.description}</p>
 
-          <FooterBtnControler>
-            <ConfirmBtn href="/edit">
-              <p>Editar prato</p>
-            </ConfirmBtn>
-          </FooterBtnControler>
-        </Food>
-      </Main>
+            {data.ingredients && (
+              <TagContainer>
+                {data.ingredients.map((ingredient) => (
+                  <Tag key={String(ingredient.id)} text={ingredient.name} />
+                ))}
+              </TagContainer>
+            )}
+
+            <FooterBtnControler>
+              <ConfirmBtn onClick={() => handleEditFood(data.id)}>
+                <p>Editar prato</p>
+              </ConfirmBtn>
+            </FooterBtnControler>
+          </Food>
+        </Main>
+      )}
 
       <BgHeaderFooter>
         <Footer />

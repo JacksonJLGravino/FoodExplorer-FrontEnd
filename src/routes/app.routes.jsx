@@ -7,7 +7,7 @@ export function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<UserHome />} />
-      <Route path="/food" element={<UserFood />} />
+      <Route path="/foods/:id" element={<UserFood />} />
     </Routes>
   );
 }

@@ -9,9 +9,9 @@ export function AdmRoutes() {
   return (
     <Routes>
       <Route path="/" element={<AdmHome />} />
-      <Route path="/food" element={<AdmFood />} />
+      <Route path="/foods/:id" element={<AdmFood />} />
       <Route path="/new" element={<AdmNewFood />} />
-      <Route path="/edit" element={<AdmEditFood />} />
+      <Route path="/edit/:id" element={<AdmEditFood />} />
     </Routes>
   );
 }

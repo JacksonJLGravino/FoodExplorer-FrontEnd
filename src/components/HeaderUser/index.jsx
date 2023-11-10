@@ -5,9 +5,11 @@ import Menu from "../../assets/menu.svg";
 import CloseSvg from "../../assets/close.svg";
 import SignOut from "../../assets/signOut.svg";
 import { SearchBar } from "../SearchBar";
-import { useState } from "react";
+import { useAuth } from "../../hooks/auth";
 
-export function HeaderUser({ onClick, QuantityReceipt = 0, IsOpen }) {
+export function HeaderUser({ onClick, QuantityReceipt = 0, IsOpen, onChange }) {
+  const { signOut } = useAuth();
+
   return (
     <Container>
       {IsOpen ? (
@@ -28,7 +30,10 @@ export function HeaderUser({ onClick, QuantityReceipt = 0, IsOpen }) {
           </a>
 
           <form action="">
-            <SearchBar placeholder="Busque por pratos ou ingredientes" />
+            <SearchBar
+              onChange={onChange}
+              placeholder="Busque por pratos ou ingredientes"
+            />
           </form>
 
           <Receipt>
@@ -37,7 +42,7 @@ export function HeaderUser({ onClick, QuantityReceipt = 0, IsOpen }) {
             <span>{QuantityReceipt}</span>
           </Receipt>
 
-          <Out href="">
+          <Out href="" onClick={signOut}>
             <img src={SignOut} alt="" />
           </Out>
         </Close>

@@ -2,7 +2,7 @@ import { AddBtn, Container, InfoSun, Text, BtnInclude } from "./styles";
 import Minus from "../../assets/minus.svg";
 import Plus from "../../assets/plus.svg";
 
-export function AddButton({ href }) {
+export function AddButton({ onClick }) {
   return (
     <Container>
       <InfoSun>
@@ -15,7 +15,9 @@ export function AddButton({ href }) {
         </AddBtn>
       </InfoSun>
 
-      <BtnInclude href={href}>incluir</BtnInclude>
+      <BtnInclude type="button" onClick={onClick}>
+        incluir
+      </BtnInclude>
     </Container>
   );
 }
