@@ -11,7 +11,6 @@ import {
   ConfirmBtn,
 } from "./styles";
 import { Footer } from "../../components/Footer";
-import Dish from "../../assets/Dish.png";
 import { Tag } from "../../components/Tag/Index";
 import { HeaderAdm } from "../../components/HeaderAdm";
 import { Modal } from "../../components/Modal";
@@ -67,7 +66,7 @@ export function AdmFood() {
             <p>Voltar</p>
           </GoBack>
 
-          <FoodImg src={Dish} alt="" />
+          <FoodImg src={`${api.defaults.baseURL}/files/${data.image}`} alt="" />
           <Food>
             <h4>{data.title}</h4>
             <p>{data.description}</p>

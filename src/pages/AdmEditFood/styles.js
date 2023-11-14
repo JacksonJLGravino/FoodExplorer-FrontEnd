@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import CaretLeft from "../../assets/caretLeft.svg";
-import ReceiptSvg from "../../assets/receipt.svg";
 
 export const Container = styled.div`
   margin-inline: auto;

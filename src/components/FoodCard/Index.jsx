@@ -8,7 +8,6 @@ export function FoodCard({
   title,
   price,
   isAdmin = false,
-  href,
   hrefIcon,
   description,
   onClick,
@@ -25,7 +24,7 @@ export function FoodCard({
       </ButtonIcon>
       <Title>{title}</Title>
       <p className="text">{description}</p>
-      <Price>{price}</Price>
+      <Price>R$ {price}</Price>
       {isAdmin ? <div></div> : <AddButton onClick={onClick} />}
     </Container>
   );

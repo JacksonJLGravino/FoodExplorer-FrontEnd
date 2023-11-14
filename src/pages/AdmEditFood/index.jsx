@@ -36,6 +36,7 @@ export function AdmEditFood() {
   const [description, setDescription] = useState("");
   const [ingredients, setIngredients] = useState([]);
   const [newIngredient, setNewIngredient] = useState("");
+  const [image, setImage] = useState(null);
 
   const { signOut } = useAuth();
   const params = useParams();
@@ -70,17 +71,31 @@ export function AdmEditFood() {
   }
 
   async function editFood() {
+    let priceDecimal = parseFloat(price).toFixed(2);
+
     try {
       await api.put(`/foods/${params.id}`, {
         title,
         description,
         type,
-        price,
+        price: priceDecimal,
         ingredients,
       });
     } catch (error) {
       alert("nao foi possivel");
     }
+
+    updateImage();
+  }
+
+  async function updateImage() {
+    const fileUploadForm = new FormData();
+    fileUploadForm.append("image", image);
+
+    await api.patch(`/foods/${params.id}`, fileUploadForm);
+
+    alert("Refeição editada com sucesso!");
+    navigate("/");
   }
 
   useEffect(() => {
@@ -129,7 +144,11 @@ export function AdmEditFood() {
                     <span>Selecione imagem para alterá-la</span>
                   </div>
                 </label>
-                <input type="file" id="ImgEdit" />
+                <input
+                  type="file"
+                  id="ImgEdit"
+                  onChange={(e) => setImage(e.target.files[0])}
+                />
               </ImportFileDiv>
 
               <InputControler>

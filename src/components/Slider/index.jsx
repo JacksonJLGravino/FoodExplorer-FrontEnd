@@ -1,13 +1,10 @@
-import { Swiper, SwiperSlide } from "swiper/react";
+import { useState } from "react";
+import { Swiper } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import { Keyboard, Navigation } from "swiper/modules";
-import { FoodCard } from "../FoodCard/Index";
-import Dish from "../../assets/Dish.png";
-import { Container } from "./styles";
-import { useEffect, useState } from "react";
 
 export function Slider({ children }) {
   window.addEventListener("resize", ResizeSlide);
@@ -39,22 +36,3 @@ export function Slider({ children }) {
     </Swiper>
   );
 }
-
-/*
-
-<SwiperSlide>
-        <FoodCard image={Dish} title="comida" price="R$ 5,25" />
-      </SwiperSlide>
-      <SwiperSlide>
-        <FoodCard image={Dish} title="comida" price="R$ 5,25" />
-      </SwiperSlide>
-
-      <SwiperSlide>
-        <FoodCard image={Dish} title="comida" price="R$ 5,25" />
-      </SwiperSlide>
-      <SwiperSlide>
-        <FoodCard image={Dish} title="comida" price="R$ 5,25" />
-      </SwiperSlide>
-      <SwiperSlide>
-        <FoodCard image={Dish} title="comida" price="R$ 5,25" />
-      </SwiperSlide>*/

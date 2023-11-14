@@ -1,10 +1,5 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  > div {
-  }
-`;
-
 export const ModalMenu = styled.div`
   position: absolute;
   z-index: 99;

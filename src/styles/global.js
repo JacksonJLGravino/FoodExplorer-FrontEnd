@@ -21,6 +21,3 @@ export default createGlobalStyle`
     transition: 0.2s;
   }
 `;
-
-/*font-family: 'Poppins', sans-serif;
-font-family: 'Roboto', sans-serif; */

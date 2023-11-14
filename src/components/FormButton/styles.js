@@ -18,5 +18,3 @@ export const Button = styled.button`
     background: ${({ theme }) => theme.COLORS.TOMATO_200};
   }
 `;
-
-//

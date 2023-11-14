@@ -26,19 +26,19 @@ import { useNavigate } from "react-router-dom";
 
 export function AdmNewFood() {
   const [isOpen, setIsOpen] = useState(false);
-  const [title, setTitle] = useState("Refeição");
-  const [type, setType] = useState("");
+  const [title, setTitle] = useState("");
+  const [type, setType] = useState("Refeição");
   const [price, setPrice] = useState();
   const [description, setDescription] = useState("");
   const [ingredients, setIngredients] = useState([]);
   const [newIngredient, setNewIngredient] = useState("");
+  const [image, setImage] = useState(null);
 
   const { signOut } = useAuth();
   const navigate = useNavigate();
 
   function handleAddIngredients() {
     setIngredients((prevState) => [...prevState, newIngredient]);
-    console.log(ingredients);
     setNewIngredient("");
   }
 
@@ -62,13 +62,25 @@ export function AdmNewFood() {
         "Você deixou um ingrediente no campo para adicionar, mas não adicionou."
       );
     }
+
+    let priceDecimal = parseFloat(price).toFixed(2);
+
     await api.post("/foods", {
       title,
       description,
       ingredients,
-      price,
+      price: priceDecimal,
       type,
     });
+
+    updateImage();
+  }
+
+  async function updateImage() {
+    const fileUploadForm = new FormData();
+    fileUploadForm.append("image", image);
+
+    await api.patch("/foods", fileUploadForm);
 
     alert("Refeição criada com sucesso!");
     navigate("/");
@@ -95,14 +107,18 @@ export function AdmNewFood() {
           <h3>Novo Prato</h3>
           <Section1>
             <ImportFileDiv>
-              <label htmlFor="ImgSend">
+              <label htmlFor="image">
                 <p>Imagem do prato</p>
                 <div>
                   <img src={UploadSimple} alt="" />
                   <span>Selecione imagem</span>
                 </div>
               </label>
-              <input type="file" id="ImgSend" />
+              <input
+                type="file"
+                id="image"
+                onChange={(e) => setImage(e.target.files[0])}
+              />
             </ImportFileDiv>
 
             <InputControler>

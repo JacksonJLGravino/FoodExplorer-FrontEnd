@@ -20,5 +20,3 @@ export const Button = styled.a`
     color: ${({ theme }) => theme.COLORS.LIGHT_300};
   }
 `;
-
-//

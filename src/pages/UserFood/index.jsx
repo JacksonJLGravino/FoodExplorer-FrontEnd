@@ -14,7 +14,6 @@ import {
 } from "./styles";
 import { Footer } from "../../components/Footer";
 import { HeaderUser } from "../../components/HeaderUser";
-import Dish from "../../assets/Dish.png";
 import { Tag } from "../../components/Tag/Index";
 import Minus from "../../assets/minus.svg";
 import Plus from "../../assets/plus.svg";
@@ -64,7 +63,7 @@ export function UserFood() {
             <p>Voltar</p>
           </GoBack>
 
-          <FoodImg src={Dish} alt="" />
+          <FoodImg src={`${api.defaults.baseURL}/files/${data.image}`} alt="" />
           <Food>
             <h4>{data.title}</h4>
             <p>{data.description}</p>

@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Container, ModalMenu } from "./styles";
 import { SearchBar } from "../SearchBar";
 

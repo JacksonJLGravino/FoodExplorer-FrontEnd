@@ -3,14 +3,13 @@ import { api } from "../../services/api";
 import { Slider } from "../Slider";
 import { SwiperSlide } from "swiper/react";
 import { FoodCard } from "../../components/FoodCard/Index";
-import Dish from "../../assets/Dish.png";
 import { useNavigate } from "react-router-dom";
 
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-export function ScrollSlider({ search, type, isAdmin, onClick }) {
+export function ScrollSlider({ search, type, isAdmin }) {
   const [foods, setFoods] = useState([]);
 
   const navigate = useNavigate();
@@ -33,7 +32,7 @@ export function ScrollSlider({ search, type, isAdmin, onClick }) {
       {foods.map((food) => (
         <SwiperSlide key={String(food.id)}>
           <FoodCard
-            image={Dish}
+            image={`${api.defaults.baseURL}/files/${food.image}`}
             title={food.title}
             description={food.description}
             price={food.price}
