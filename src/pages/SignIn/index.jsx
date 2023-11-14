@@ -35,7 +35,7 @@ export function SignIn() {
           label="Senha"
           placeholder="No mínimo 6 caracteres"
           htmlFor="senha"
-          type="passwordIn"
+          type="password"
           onChange={(e) => setPassword(e.target.value)}
         />
         <FormButton btnText="Entrar" onClick={handleSignIn} />
