@@ -37,7 +37,7 @@ export function HeaderAdm({ onClick, IsOpen, onChange }) {
             <p>Novo prato</p>
           </Receipt>
 
-          <Out href="" onClick={signOut}>
+          <Out href="/" onClick={signOut}>
             <img src={SignOut} alt="" />
           </Out>
         </Close>

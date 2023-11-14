@@ -1,9 +1,9 @@
-import { Container, ModalMenu } from "./styles";
+import { ModalMenu } from "./styles";
 import { SearchBar } from "../SearchBar";
 
 export function Modal({ IsOpen, children, onChange, value }) {
   return (
-    <Container>
+    <div>
       {IsOpen ? (
         <ModalMenu>
           <SearchBar
@@ -16,6 +16,6 @@ export function Modal({ IsOpen, children, onChange, value }) {
       ) : (
         <div />
       )}
-    </Container>
+    </div>
   );
 }

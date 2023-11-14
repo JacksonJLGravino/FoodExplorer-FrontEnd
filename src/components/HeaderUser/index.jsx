@@ -42,7 +42,7 @@ export function HeaderUser({ onClick, QuantityReceipt = 0, IsOpen, onChange }) {
             <span>{QuantityReceipt}</span>
           </Receipt>
 
-          <Out href="" onClick={signOut}>
+          <Out href="/" onClick={signOut}>
             <img src={SignOut} alt="" />
           </Out>
         </Close>
