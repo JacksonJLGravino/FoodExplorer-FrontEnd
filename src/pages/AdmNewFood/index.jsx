@@ -63,6 +63,10 @@ export function AdmNewFood() {
       );
     }
 
+    if (image == null) {
+      return alert("Você não adicionou uma imagem.");
+    }
+
     let priceDecimal = parseFloat(price).toFixed(2);
 
     await api.post("/foods", {

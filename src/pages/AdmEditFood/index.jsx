@@ -85,7 +85,9 @@ export function AdmEditFood() {
       alert("nao foi possivel");
     }
 
-    updateImage();
+    if (image != null) {
+      updateImage();
+    }
   }
 
   async function updateImage() {
