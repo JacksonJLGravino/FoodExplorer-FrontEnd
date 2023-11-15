@@ -186,7 +186,7 @@ export function AdmEditFood() {
                       />
                     ))}
                   <AddFoodTag
-                    placeholder="teste 321"
+                    placeholder="Adicionar"
                     isNew={true}
                     value={newIngredient}
                     onChange={(e) => setNewIngredient(e.target.value)}
